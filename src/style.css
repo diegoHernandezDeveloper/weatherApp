@@ -1,4 +1,35 @@
+* {
+  box-sizing: border-box;
+  padding: 0;
+  margin: 0;
+}
+
+:root {
+  --color-one: mediumaquamarine;
+}
+
 body {
-  background-color: mediumaquamarine;
+  background-color: var(--color-one);
   color: white;
+}
+
+main {
+}
+
+input {
+  margin: 10px 0;
+  color: var(--color-one);
+  height: 30px;
+  font-weight: bold;
+}
+
+button {
+  height: 30px;
+
+  font-weight: bold;
+  padding: 0 10px;
+  color: var(--color-one);
+  border: 1px solid white;
+  border-radius: 5px;
+  background-color: white;
 }

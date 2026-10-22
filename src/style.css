@@ -13,7 +13,9 @@ body {
   color: white;
 }
 
-main {
+nav {
+  width: max-content;
+  margin: 10px auto;
 }
 
 input {
@@ -32,4 +34,88 @@ button {
   border: 1px solid white;
   border-radius: 5px;
   background-color: white;
+}
+
+div[sliderContainer] {
+  width: max-content;
+  margin: 0 auto;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 10px;
+}
+
+h2 {
+  font-size: 30px;
+  text-transform: uppercase;
+  margin: 20px 0;
+  text-align: center;
+}
+
+div[stats] {
+  display: flex;
+  justify-content: space-between;
+  padding: 10px 20px;
+}
+
+.switch {
+  position: relative;
+  width: 60px;
+  height: 30px;
+}
+
+.switch input {
+  width: 0;
+}
+
+.slider {
+  position: absolute;
+  cursor: pointer;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-color: #ccc;
+  transition: 0.4s;
+  border-radius: 34px;
+}
+
+/* Toggle Switch */
+
+.switch {
+  position: relative;
+  width: 60px;
+  height: 34px;
+}
+
+.switch input {
+  width: 0;
+}
+
+.slider {
+  position: absolute;
+  cursor: pointer;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  transition: 0.4s;
+  background-color: rgb(51, 145, 113);
+  border-radius: 34px;
+}
+
+.slider:before {
+  position: absolute;
+  content: "";
+  height: 26px;
+  width: 26px;
+  left: 4px;
+  bottom: 4px;
+  background-color: white;
+  transition: 0.4s;
+  border-radius: 50%;
+}
+
+input:checked + .slider:before {
+  transform: translateX(26px);
 }

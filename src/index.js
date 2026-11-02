@@ -1,6 +1,6 @@
 import "./style.css";
 
-const button = document.querySelector("button");
+const button = document.querySelector("button[search]");
 const buttonF = document.querySelector("button[farenheit]");
 const buttonC = document.querySelector("button[celsius]");
 
@@ -10,8 +10,8 @@ button.addEventListener("click", () => {
 
   getWeather(location);
 });
-buttonF.addEventListener("click", displayFahrenheit);
-buttonC.addEventListener("click", displayCelsius);
+buttonF.addEventListener("click", () => setUnit("°F"));
+buttonC.addEventListener("click", () => setUnit("°C"));
 
 async function getWeather(location) {
   try {
@@ -28,38 +28,47 @@ async function getWeather(location) {
       (temp.textContent = `${data.days[0].temp}`),
       (condition.textContent = data.days[0].conditions));
 
-    console.table(data.days[0]);
+    console.log(data);
+
+    const localTime = new Intl.DateTimeFormat("en-US", {
+      timeZone: data.timezone,
+      dateStyle: "medium",
+      timeStyle: "short",
+    }).format(new Date());
+
+    console.log(localTime);
 
     document.querySelector("input").value = "";
-    buttonF.classList.toggle("active");
-    buttonC.classList.toggle("active");
+    if (!buttonF.classList.contains("active"))
+      buttonF.classList.toggle("active");
+    if (buttonC.classList.contains("active"))
+      buttonC.classList.toggle("active");
+    document.querySelector("span").textContent = "°F";
   } catch (error) {
     console.log(error);
     alert("Please enter a valid city or country");
   }
 }
 
-function displayFahrenheit() {
+function setUnit(targetUnit) {
   let tempSpan = document.querySelector("span");
-  if (tempSpan.textContent == "°C") {
-    let temp = document.querySelector("p[temp]");
-    let result = convertToFahrenheit(+temp.textContent);
-    temp.textContent = result.toFixed(1);
-    tempSpan.textContent = "°F";
-    buttonF.classList.toggle("active");
-    buttonC.classList.toggle("active");
-  }
-}
 
-function displayCelsius() {
-  let tempSpan = document.querySelector("span");
-  if (tempSpan.textContent == "°F") {
+  // Only convert if we are clicking the unit we aren't currently on
+  if (tempSpan.textContent !== targetUnit) {
     let temp = document.querySelector("p[temp]");
-    let result = convertToCelsius(+temp.textContent);
+    let currentTemp = +temp.textContent;
+
+    let result =
+      targetUnit === "°F"
+        ? convertToFahrenheit(currentTemp)
+        : convertToCelsius(currentTemp);
+
     temp.textContent = result.toFixed(1);
-    tempSpan.textContent = "°C";
-    buttonF.classList.toggle("active");
-    buttonC.classList.toggle("active");
+    tempSpan.textContent = targetUnit;
+
+    // Toggle active classes based on target unit
+    buttonF.classList.toggle("active", targetUnit === "°F");
+    buttonC.classList.toggle("active", targetUnit === "°C");
   }
 }
 

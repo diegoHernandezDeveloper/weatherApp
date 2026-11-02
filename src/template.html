@@ -6,31 +6,24 @@
     <title>Document</title>
   </head>
   <body>
-    <nav>
-      <h1>Weather App</h1>
-      <input type="text" placeholder="location" />
+    <div>
+      <label for="location">Location:</label>
+      <input type="text" id="location" />
       <button>Search</button>
-      <div sliderContainer>
+      <button class="active" farenheit>F</button>
+      <button celsius>C</button>
+    </div>
+    <h2></h2>
+    <section>
+      <div>
+        <h3>Temperature:</h3>
+        <p temp></p>
         <span>°F</span>
-        <label class="switch">
-          <input type="checkbox" />
-          <span class="slider round"></span>
-        </label>
-        <span>°C</span>
       </div>
-    </nav>
-    <main>
-      <h2>las vegas</h2>
-      <div stats>
-        <div>
-          <h3>Condition</h3>
-          <p condition>Partially cloudy</p>
-        </div>
-        <div>
-          <h3>Temperature</h3>
-          <p temp>68.1 °F</p>
-        </div>
+      <div>
+        <h3>Condition:</h3>
+        <p condition></p>
       </div>
-    </main>
+    </section>
   </body>
 </html>

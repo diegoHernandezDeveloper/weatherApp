@@ -1,5 +1,5 @@
 :root {
-  --color-one: mediumseagreen;
+  --color-one: rgb(60, 171, 179);
 }
 
 * {
@@ -8,48 +8,93 @@
   box-sizing: border-box;
 }
 
+body {
+  color: white;
+  background-color: var(--color-one);
+  font-family: sans-serif;
+}
+
+button {
+  color: var(--color-one);
+  padding: 4px 12px;
+  border: 1px solid white;
+  border-radius: 5px;
+  cursor: pointer;
+}
+
 body,
 button {
   font-size: 1.5rem;
   font-weight: bold;
 }
 
-body {
-  color: white;
-  background-color: var(--color-one);
-}
-
-button {
-  color: var(--color-one);
-  padding: 1px 10px;
-  border: 1px solid white;
-  border-radius: 5px;
-}
-
-body > div {
-  display: flex;
-  gap: 2px;
-  width: 50%;
-  margin: 0 auto;
-  padding: 5px;
-}
-
-h2 {
+h1 {
   text-align: center;
-  margin: 50px 0 30px 0;
+  margin-top: 20px;
 }
 
-section {
+.search-bar {
   display: flex;
-  justify-content: space-between;
+  gap: 10px;
+  width: 50%;
+  margin: 20px auto;
+  padding: 5px;
+  justify-content: center;
+  align-items: center;
+}
+
+.search-bar input {
+  padding: 4px 8px;
+  border-radius: 4px;
+  border: none;
+  font-size: 1.2rem;
+}
+
+h2.city-name {
+  text-align: center;
+  margin: 40px 0 20px 0;
+}
+
+.weather-main {
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+  padding: 20px;
+}
+
+.current-weather {
+  display: flex;
+  gap: 20px;
+  align-items: center;
+}
+
+.temp-display {
+  display: flex;
+  align-items: flex-start;
+}
+
+.temp-value {
+  font-size: 60px;
+  line-height: 1;
+}
+
+.forecast-days {
+  margin: 60px auto;
+  display: flex;
+  justify-content: center;
+  gap: 15px;
   padding: 0 10px;
 }
 
-p {
-  display: inline-block;
+.forecast-card {
+  background: rgba(255, 255, 255, 0.1);
+  padding: 15px 20px;
+  border-radius: 8px;
+  text-align: center;
 }
 
 .active {
-  border: 2px solid green;
-  color: green;
+  border: 2px solid white;
+  background-color: white;
+  color: var(--color-one);
 }

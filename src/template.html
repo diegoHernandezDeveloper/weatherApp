@@ -3,27 +3,51 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Document</title>
+    <title>Weather App</title>
   </head>
   <body>
-    <div>
+    <h1>Weather App</h1>
+
+    <div class="search-bar">
       <label for="location">Location:</label>
       <input type="text" id="location" />
-      <button>Search</button>
-      <button class="active" farenheit>F</button>
-      <button celsius>C</button>
+      <button class="search-btn">Search</button>
     </div>
-    <h2></h2>
-    <section>
-      <div>
-        <h3>Temperature:</h3>
-        <p temp></p>
-        <span>°F</span>
+
+    <h2 class="city-name">Las Vegas</h2>
+
+    <main class="weather-main">
+      <div class="current-weather">
+        <div class="weather-icon-container">
+          <img src="#" alt="Weather icon" class="weather-icon" />
+        </div>
+        <div class="temp-display">
+          <span class="temp-value">52</span>
+          <span class="temp-unit active-unit">°F</span>
+          <span class="separator">|</span>
+          <span class="temp-unit">°C</span>
+        </div>
+        <div class="weather-stats">
+          <p>Precipitation: <span class="precip-val">0%</span></p>
+          <p>Humidity: <span class="humidity-val">45%</span></p>
+          <p>Wind: <span class="wind-val">5 mph</span></p>
+        </div>
       </div>
-      <div>
-        <h3>Condition:</h3>
-        <p condition></p>
+
+      <div class="weather-details">
+        <p class="condition-text">Partly Cloudy</p>
+        <p class="time-text">Day - Time</p>
       </div>
+    </main>
+
+    <section class="forecast-days">
+      <div class="forecast-card">Day 1</div>
+      <div class="forecast-card">Day 2</div>
+      <div class="forecast-card">Day 3</div>
+      <div class="forecast-card">Day 4</div>
+      <div class="forecast-card">Day 5</div>
+      <div class="forecast-card">Day 6</div>
+      <div class="forecast-card">Day 7</div>
     </section>
   </body>
 </html>

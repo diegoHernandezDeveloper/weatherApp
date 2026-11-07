@@ -1,12 +1,35 @@
 import "./style.css";
 
-// const button = document.querySelector("button[search]");
-// const buttonF = document.querySelector("button[farenheit]");
-// const buttonC = document.querySelector("button[celsius]");
+const searchBtn = document.querySelector(".search-btn");
 
-// button.addEventListener("click", () => {
-//   const location = document.querySelector("input").value;
-//   if (location == "") return;
+searchBtn.addEventListener("click", () => {
+  const locationName = document.querySelector("#location").value;
+  fetchWeatherData(locationName);
+});
+
+async function fetchWeatherData(location) {
+  try {
+    const KEY = "E3VBXLTQ9CYL8XZ4SZFDXENYQ";
+    let API = `https://weather.visualcrossing.com/VisualCrossingWebServices/rest/services/timeline/${location}?key=${KEY}`;
+    const response = await fetch(API);
+    const data = await response.json();
+    console.log(data);
+
+    const icon = document.querySelector(".weather-icon");
+    const temp = document.querySelector(".temp-value");
+    const precipitation = document.querySelector(".precipitation-val");
+    const humidity = document.querySelector(".humidity-val");
+    const wind = document.querySelector(".wind-val");
+
+    icon.src = `./icons/${data.currentConditions.icon}.png`;
+    temp.textContent = data.currentConditions.temp;
+    precipitation.textContent = `${data.currentConditions.precip} %`;
+    humidity.textContent = `${data.currentConditions.humidity} %`;
+    wind.textContent = `${data.currentConditions.windspeed} mph`;
+  } catch (error) {
+    console.error(error);
+  }
+}
 
 //   getWeather(location);
 // });

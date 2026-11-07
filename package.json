@@ -18,6 +18,7 @@
   },
   "homepage": "https://github.com/diegoHernandezDeveloper/weatherApp#readme",
   "devDependencies": {
+    "copy-webpack-plugin": "^14.0.0",
     "css-loader": "^7.1.5",
     "html-loader": "^5.1.0",
     "html-webpack-plugin": "^5.6.8",

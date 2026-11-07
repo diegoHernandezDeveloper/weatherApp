@@ -1,5 +1,6 @@
 import path from "node:path";
 import HtmlWebpackPlugin from "html-webpack-plugin";
+import CopyWebpackPlugin from "copy-webpack-plugin"; // 1. Import it
 
 export default {
   mode: "development",
@@ -16,6 +17,10 @@ export default {
   plugins: [
     new HtmlWebpackPlugin({
       template: "./src/template.html",
+    }),
+    // 2. Add CopyWebpackPlugin so your icons folder copies to dist/
+    new CopyWebpackPlugin({
+      patterns: [{ from: "public/icons", to: "icons" }],
     }),
   ],
   module: {

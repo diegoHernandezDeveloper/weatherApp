@@ -1,5 +1,6 @@
 :root {
   --color-one: rgb(60, 171, 179);
+  --color-two: rgb(249, 252, 252);
 }
 
 * {
@@ -93,8 +94,17 @@ h2.city-name {
   text-align: center;
 }
 
-.active {
-  border: 2px solid white;
-  background-color: white;
-  color: var(--color-one);
+.fahrenheit-unit,
+.celsius-unit {
+  color: rgb(209, 207, 207);
+  padding: 5px;
+}
+
+.fahrenheit-unit:hover,
+.celsius-unit:hover {
+  cursor: pointer;
+}
+
+.active-unit {
+  color: var(--color-two);
 }

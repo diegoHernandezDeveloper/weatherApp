@@ -9,6 +9,7 @@ searchBtn.addEventListener("click", () => {
   fetchWeatherData(locationName);
 });
 farenheitSpan.addEventListener("click", () => {
+  changeUnitsToFahrenheit();
   farenheitSpan.classList.add("active-unit");
   celciusSpan.classList.remove("active-unit");
 });
@@ -94,6 +95,30 @@ function changeUnitsToCelcius() {
 
     temperatureObject.days[i].max = Math.round(
       convertToCelcius(temperatureObject.days[i].max),
+    );
+
+    daysDivs[i].textContent =
+      `${temperatureObject.days[i].min}° ${temperatureObject.days[i].max}°`;
+  }
+  console.log(temperatureObject);
+}
+
+function changeUnitsToFahrenheit() {
+  temperatureObject.temp = Math.round(
+    convertToFahrenheit(temperatureObject.temp),
+  );
+  const tempDiv = document.querySelector(".temp-value");
+  const daysDivsNods = document.querySelectorAll(".day-div-temp");
+  const daysDivs = [...daysDivsNods];
+  console.log(daysDivs);
+  tempDiv.textContent = temperatureObject.temp;
+  for (let i = 0; i < 7; i++) {
+    temperatureObject.days[i].min = Math.round(
+      convertToFahrenheit(temperatureObject.days[i].min),
+    );
+
+    temperatureObject.days[i].max = Math.round(
+      convertToFahrenheit(temperatureObject.days[i].max),
     );
 
     daysDivs[i].textContent =

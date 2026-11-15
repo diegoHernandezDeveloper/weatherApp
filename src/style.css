@@ -108,3 +108,7 @@ h2.city-name {
 .active-unit {
   color: var(--color-two);
 }
+
+.weather-main {
+  display: none;
+}

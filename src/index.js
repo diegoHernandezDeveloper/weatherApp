@@ -75,7 +75,7 @@ async function fetchWeatherData(location) {
       div.append(img, tempDiv);
       daysContainter.appendChild(div);
     }
-    console.log(temperatureObject);
+    document.querySelector(".weather-main").style.display = "flex";
   } catch (error) {
     console.error(error);
   }

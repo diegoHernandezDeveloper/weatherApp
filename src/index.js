@@ -57,7 +57,7 @@ async function fetchWeatherData(location) {
       const dateStr = data.days[i].datetime;
 
       div.classList.add(`day`);
-      tempDiv.classList.add(`minMaxTempDay-${i}`);
+      tempDiv.classList.add(`day-div-temp`);
       div.innerText = new Date(dateStr).toLocaleDateString("en-US", {
         weekday: "short",
       });
@@ -82,13 +82,22 @@ async function fetchWeatherData(location) {
 
 function changeUnitsToCelcius() {
   temperatureObject.temp = Math.round(convertToCelcius(temperatureObject.temp));
+  const tempDiv = document.querySelector(".temp-value");
+  const daysDivsNods = document.querySelectorAll(".day-div-temp");
+  const daysDivs = [...daysDivsNods];
+  console.log(daysDivs);
+  tempDiv.textContent = temperatureObject.temp;
   for (let i = 0; i < 7; i++) {
     temperatureObject.days[i].min = Math.round(
       convertToCelcius(temperatureObject.days[i].min),
     );
+
     temperatureObject.days[i].max = Math.round(
       convertToCelcius(temperatureObject.days[i].max),
     );
+
+    daysDivs[i].textContent =
+      `${temperatureObject.days[i].min}° ${temperatureObject.days[i].max}°`;
   }
   console.log(temperatureObject);
 }

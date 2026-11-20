@@ -38,10 +38,11 @@ async function fetchWeatherData(location) {
     const humidity = document.querySelector(".humidity-val");
     const wind = document.querySelector(".wind-val");
 
-    document.querySelector(".city-name").textContent;
+    document.querySelector(".city-name").textContent =
+      `${data.address[0].toUpperCase()}${data.address.slice(1)}`;
     icon.src = `./icons/${data.currentConditions.icon}.png`;
     temp.textContent = data.currentConditions.temp;
-    precipitation.textContent = `${data.currentConditions.precip} %`;
+    precipitation.textContent = `${data.currentConditions.precip == null ? 0 : data.currentConditions.precip} %`;
     humidity.textContent = `${data.currentConditions.humidity} %`;
     wind.textContent = `${data.currentConditions.windspeed} mph`;
 

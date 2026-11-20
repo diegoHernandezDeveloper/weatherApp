@@ -4,22 +4,25 @@ const searchBtn = document.querySelector(".search-btn");
 const farenheitSpan = document.querySelector(".fahrenheit-unit");
 const celciusSpan = document.querySelector(".celsius-unit");
 
+let temperatureObject = null;
+
 searchBtn.addEventListener("click", () => {
   const locationName = document.querySelector("#location").value;
   fetchWeatherData(locationName);
 });
 farenheitSpan.addEventListener("click", () => {
-  changeUnitsToFahrenheit();
+  temperatureObject.unit = "C";
+  console.log(temperatureObject);
+  changeUnits();
   farenheitSpan.classList.add("active-unit");
   celciusSpan.classList.remove("active-unit");
 });
 celciusSpan.addEventListener("click", () => {
-  changeUnitsToCelcius();
+  temperatureObject.unit = "F";
+  changeUnits();
   farenheitSpan.classList.remove("active-unit");
   celciusSpan.classList.add("active-unit");
 });
-
-let temperatureObject = null;
 
 async function fetchWeatherData(location) {
   try {
@@ -31,6 +34,7 @@ async function fetchWeatherData(location) {
 
     temperatureObject = {};
     temperatureObject.days = [];
+    temperatureObject.unit = "F";
 
     const icon = document.querySelector(".weather-icon");
     const temp = document.querySelector(".temp-value");
@@ -83,45 +87,24 @@ async function fetchWeatherData(location) {
   }
 }
 
-function changeUnitsToCelcius() {
-  temperatureObject.temp = Math.round(convertToCelcius(temperatureObject.temp));
+function changeUnits() {
+  const switcher = temperatureObject.unit == "F" ? true : false;
+
+  temperatureObject.temp = switcher
+    ? Math.round(convertToCelcius(temperatureObject.temp))
+    : Math.round(convertToFahrenheit(temperatureObject.temp));
   const tempDiv = document.querySelector(".temp-value");
   const daysDivsNods = document.querySelectorAll(".day-div-temp");
   const daysDivs = [...daysDivsNods];
-  console.log(daysDivs);
   tempDiv.textContent = temperatureObject.temp;
   for (let i = 0; i < 7; i++) {
-    temperatureObject.days[i].min = Math.round(
-      convertToCelcius(temperatureObject.days[i].min),
-    );
+    temperatureObject.days[i].min = switcher
+      ? Math.round(convertToCelcius(temperatureObject.days[i].min))
+      : Math.round(convertToFahrenheit(temperatureObject.days[i].min));
 
-    temperatureObject.days[i].max = Math.round(
-      convertToCelcius(temperatureObject.days[i].max),
-    );
-
-    daysDivs[i].textContent =
-      `${temperatureObject.days[i].min}° ${temperatureObject.days[i].max}°`;
-  }
-  console.log(temperatureObject);
-}
-
-function changeUnitsToFahrenheit() {
-  temperatureObject.temp = Math.round(
-    convertToFahrenheit(temperatureObject.temp),
-  );
-  const tempDiv = document.querySelector(".temp-value");
-  const daysDivsNods = document.querySelectorAll(".day-div-temp");
-  const daysDivs = [...daysDivsNods];
-  console.log(daysDivs);
-  tempDiv.textContent = temperatureObject.temp;
-  for (let i = 0; i < 7; i++) {
-    temperatureObject.days[i].min = Math.round(
-      convertToFahrenheit(temperatureObject.days[i].min),
-    );
-
-    temperatureObject.days[i].max = Math.round(
-      convertToFahrenheit(temperatureObject.days[i].max),
-    );
+    temperatureObject.days[i].max = switcher
+      ? Math.round(convertToCelcius(temperatureObject.days[i].max))
+      : Math.round(convertToFahrenheit(temperatureObject.days[i].max));
 
     daysDivs[i].textContent =
       `${temperatureObject.days[i].min}° ${temperatureObject.days[i].max}°`;
